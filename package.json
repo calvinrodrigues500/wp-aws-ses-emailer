@@ -1,0 +1,16 @@
+{
+  "name": "wp-aws-ses-emailer",
+  "version": "1.0.0",
+  "description": "AWS Integration for SES",
+  "main": "index.js",
+  "scripts": {
+    "build": "wp-scripts build",
+    "start": "wp-scripts start",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Calvin Rodrigues",
+  "license": "ISC",
+  "devDependencies": {
+    "@wordpress/scripts": "^28.3.0"
+  }
+}

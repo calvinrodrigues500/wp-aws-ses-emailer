@@ -1,0 +1,15 @@
+{
+    "name": "calvin/wp-aws-ses-emailer",
+    "description": "AWS SES Integration for WordPress",
+    "type": "wordpress-plugin",
+    "autoload": {
+        "classmap": ["includes/"]
+    },
+    "authors": [
+        {
+            "name": "Calvin Rodrigues",
+            "email": "calvinrodrigues500@gmail.com"
+        }
+    ],
+    "require": {}
+}
