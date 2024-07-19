@@ -13,32 +13,39 @@ defined('ABSPATH') || die;
 class EmailerSettingsMenu {
 
 	/**
-	 * Page title,
+	 * Instance.
 	 *
-	 * @var string
+	 * @var EmailerSettingsMenu
 	 */
-	protected string $page_title;
+	private static $instance;
 
 	/**
-	 * Menu title,
+	 * Page title.
 	 *
 	 * @var string
 	 */
-	protected string $menu_title;
+	protected $page_title;
+
+	/**
+	 * Menu title.
+	 *
+	 * @var string
+	 */
+	protected $menu_title;
 
 	/**
 	 * Menu capability.
 	 *
 	 * @var string
 	 */
-	private string $menu_capability = 'manage_options';
+	private $menu_capability = 'manage_options';
 
 	/**
 	 * Menu slug.
 	 *
 	 * @var string
 	 */
-	protected string $menu_slug = 'wp_aws_ses_emailer_settings';
+	protected $menu_slug = 'wp_aws_ses_emailer_settings';
 
 	/**
 	 * Emailer settings constructor.
@@ -47,6 +54,18 @@ class EmailerSettingsMenu {
 		$this->page_title = __('AWS SES Settings', 'wp-aws-ses-emailer');
 		$this->menu_title = __('AWS SES Emailer Settings', 'wp-aws-ses-emailer');
 		add_action('admin_menu', array($this, 'aws_ses_emailer_settings_page'));
+	}
+
+	/**
+	 * Load instance.
+	 */
+	public static function instance() {
+
+		if (null == self::$instance) {
+			self::$instance = new self();
+		}
+
+		return self::$instance;
 	}
 
 	/**

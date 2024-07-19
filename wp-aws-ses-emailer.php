@@ -15,5 +15,5 @@ defined('ABSPATH') || die;
 require __DIR__ . '/vendor/autoload.php';
 
 add_action('plugins_loaded', function() {
-	\Calvin\WpAwsSesEmailer\Loader::get_instance();
+	\Calvin\WpAwsSesEmailer\Loader::instance();
 });

@@ -8,8 +8,6 @@
 
 namespace Calvin\WpAwsSesEmailer;
 
-use Calvin\WpAwsSesEmailer\Admin\EmailerSettingsMenu;
-
 defined('ABSPATH') || die;
 
 class Loader {
@@ -22,9 +20,17 @@ class Loader {
 	public static $instance;
 
 	/**
+	 * Class loader.
+	 */
+	public function __construct() {
+		$this->init();
+	}
+
+	/**
 	 * Instance loader.
 	 */
-	public static function get_instance() {
+	public static function instance() {
+
 		if (null === self::$instance) {
 			self::$instance = new self();
 		}
@@ -32,10 +38,7 @@ class Loader {
 		return self::$instance;
 	}
 
-	public function __construct() {
-
-		error_log('loading');
-
-		new EmailerSettingsMenu();
+	public function init() {
+		\Calvin\WpAwsSesEmailer\Admin\EmailerSettingsMenu::instance();
 	}
 }
