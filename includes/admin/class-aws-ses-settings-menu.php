@@ -8,6 +8,8 @@
 
 namespace Calvin\WpAwsSesEmailer\Admin;
 
+use GMP;
+
 defined('ABSPATH') || die;
 
 class EmailerSettingsMenu {
@@ -54,6 +56,8 @@ class EmailerSettingsMenu {
 		$this->page_title = __('AWS SES Settings', 'wp-aws-ses-emailer');
 		$this->menu_title = __('AWS SES Emailer Settings', 'wp-aws-ses-emailer');
 		add_action('admin_menu', array($this, 'aws_ses_emailer_settings_page'));
+
+		add_action('admin_enqueue_scripts', array($this, 'aws_ses_emailer_scripts') );
 	}
 
 	/**
@@ -82,9 +86,35 @@ class EmailerSettingsMenu {
 	}
 
 	/**
+	 * Initialize page scripts.
+	 */
+	public function aws_ses_emailer_scripts() {
+
+		wp_enqueue_script(
+			'wp-aws-ses-emailer',
+			WP_AWS_SES_EMAILER_PLUGIN_DIR_URL . 'build/index.js',
+			array('react', 'wp-element', 'wp-components'),
+			WP_AWS_SES_PLUGIN_VERSION,
+			true
+		);
+
+		// Since adding tailwind is affecting other WP pages, enqueuing it only for the plugin settings page.
+		if ( !isset($_GET) || !isset( $_GET['page']) || $_GET['page'] !== 'wp_aws_ses_emailer_settings') {
+			return;
+		}
+
+		wp_enqueue_style(
+			'wp-aws-ses-emailer-styles',
+			WP_AWS_SES_EMAILER_PLUGIN_DIR_URL . 'build/style.css',
+			array(),
+			WP_AWS_SES_PLUGIN_VERSION
+		);
+	}
+
+	/**
 	 * Render page view.
 	 */
 	public function render_view() {
-		echo "<h1>Hello Settings</h1>";
+		echo "<div class='wrap' id='wp-aws-ses-emailer-settings'>heya</div>";
 	}
 }
