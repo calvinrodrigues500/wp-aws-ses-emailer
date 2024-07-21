@@ -8,6 +8,7 @@
  * Requires PHP 7.4
  * Author: Calvin Rodrigues
  * Author URI: https://calvinrodrigues.in
+ * Text Domain: wp-aws-ses-emailer
  */
 
 defined('ABSPATH') || die;
