@@ -39,6 +39,7 @@ class Loader {
 	}
 
 	public function init() {
+		\Dotenv\Dotenv::createImmutable(WP_AWS_SES_EMAILER_PLUGIN_DIR_URL)->load();
 		\Calvin\WpAwsSesEmailer\Admin\EmailerSettingsMenu::instance();
 	}
 }

@@ -2,3 +2,4 @@ node_modules
 plan.txt
 /vendor/
 build
+.env
