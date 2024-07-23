@@ -1,12 +1,10 @@
+import { Navbar, Content} from "./components";
+
 const Dashboard = () => {
   return (
-	<div className="flex gap-10 p-5 ">
-    <div>
-      navbar
-    </div>
-    <div>
-      content
-    </div>
+	<div className="flex gap-5 min-h-full">
+   <Navbar />
+   <Content />
   </div>
   )
 }
