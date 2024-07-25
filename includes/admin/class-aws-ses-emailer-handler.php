@@ -11,7 +11,7 @@ defined('ABSPATH') || die;
 
 use Aws\S3\S3Client;
 use Aws\Credentials\Credentials;
-use Exception;
+use Aws\Ses\SesClient;
 
 class EmailHandler {
 
@@ -22,12 +22,18 @@ class EmailHandler {
 			$_ENV['AWS_SECRET_ACCESS_KEY']
 		);
 
-		$s3Client = new S3Client([
-			'region'	=> 'us-west-2',
-			'version'	=> '2006-03-01',
-			'credentials'	=> $credentials
-		]);
+		// $s3Client = new S3Client([
+		// 	'region'	=> 'us-west-2',
+		// 	'version'	=> '2006-03-01',
+		// 	'credentials'	=> $credentials
+		// ]);
 
+		// $ses_client = new SesClient(
+		// 	array(
+		// 		'region'	=> '',
+		// 	'credentials'	=> ''
+		// 	)
+		// );
 
 
 		//Listing all S3 Bucket
