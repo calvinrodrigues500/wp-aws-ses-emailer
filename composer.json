@@ -13,5 +13,9 @@
     ],
     "require-dev": {
         "phpunit/phpunit": "^11.2"
+    },
+    "require": {
+        "aws/aws-sdk-php": "^3.316",
+        "vlucas/phpdotenv": "^5.6"
     }
 }

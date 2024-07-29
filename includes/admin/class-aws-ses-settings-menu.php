@@ -115,6 +115,8 @@ class EmailerSettingsMenu {
 	 * Render page view.
 	 */
 	public function render_view() {
+
+		new \Calvin\WpAwsSesEmailer\Admin\EmailHandler();
 		echo "<div class='wrap' id='wp-aws-ses-emailer-settings'>heya</div>";
 	}
 }
