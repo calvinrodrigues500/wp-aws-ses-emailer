@@ -4,7 +4,7 @@
  * Plugin settings API.
  */
 
-namespace Calvin\WpAwsSesEmailer\Admin\Endpoints\V1;
+namespace Calvin\WpAwsSesEmailer\Endpoints\V1;
 
 defined('ABSPATH') || exit;
 

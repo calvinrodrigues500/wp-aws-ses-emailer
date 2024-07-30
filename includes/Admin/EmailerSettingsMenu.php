@@ -8,8 +8,6 @@
 
 namespace Calvin\WpAwsSesEmailer\Admin;
 
-use GMP;
-
 defined('ABSPATH') || die;
 
 class EmailerSettingsMenu {
@@ -96,6 +94,14 @@ class EmailerSettingsMenu {
 			array('react', 'wp-element', 'wp-components'),
 			WP_AWS_SES_PLUGIN_VERSION,
 			true
+		);
+
+		wp_localize_script(
+			'wp-aws-ses-emailer',
+			'wp_aws_ses_data',
+			array(
+				'awsRegions'	=> \Calvin\WpAwsSesEmailer\Helpers\Constants::$aws_regions
+			)
 		);
 
 		// Since adding tailwind is affecting other WP pages, enqueuing it only for the plugin settings page.

@@ -1,5 +1,5 @@
 import { __ } from '@wordpress/i18n';
-import { InputControl } from './';
+import { InputControl, SelectControl } from './';
 import { useState } from '@wordpress/element';
 import apiFetch from '@wordpress/api-fetch';
 
@@ -41,6 +41,9 @@ const SettingsPage = () => {
 		
 	};
 
+	// const options = window.awsSesData.awsRegions;
+	// console.log('options: ', options);
+
 	return <>
 		<div className='mb-5'>
 			<h2 className='font-semibold text-lg'> {__('AWS Configuration', 'wp-aws-ses-emailer')} </h2>
@@ -58,11 +61,12 @@ const SettingsPage = () => {
 			label='Secret Access Key'
 			onChange={handleFormData}
 		/>
-		<InputControl
+		<SelectControl
 			id='aws-ses-region'
 			name='awsSesRegion'
 			label='Region'
 			onChange={handleFormData}
+			// options={options}
 		/>
 		<button type='submit' className='bg-slate-800 text-slate-200 px-6 py-3 font-semibold text-md rounded-md' onClick={saveSettings}>
 			{ __('Save', 'wp-aws-ses-emailer') }

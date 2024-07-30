@@ -1,8 +1,14 @@
-const SelectControl = ({ name, id, options = ['hi', 'hello'] }) => {
+const SelectControl = ({ id, name, label, options, onChange }) => {
 
-	return <select name={name} id={id}>
+	options = ['hi', 'hello'];
+
+	return <select
+		name={name}
+		id={id}
+		className='px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent w-10'
+	>
 		{ options.map((value) => {
-			<options value={value}>{value}</options>
+			return <option value={value}>{value}</option>
 		})
 		}
 	</select>
