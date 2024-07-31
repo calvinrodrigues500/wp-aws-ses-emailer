@@ -5,8 +5,6 @@ import apiFetch from '@wordpress/api-fetch';
 
 const SettingsPage = () => {
 
-	const { awsRegions } = window?.wp_aws_ses_data;
-
 	const [formData, setFormData] = useState({
 		awsSesAccessKeyId: '',
 		awsSesSecretAccessKey: '',
@@ -25,20 +23,26 @@ const SettingsPage = () => {
 
 		console.log('====')
 
-		apiFetch({
-			path: '/wp-json/aws-ses/v1/settings',
-			method: 'POST',
-			data: formData
-		}).then((response) => {
-			console.log('==== ', response)
-		});
-
-		// apiFetch.use((options, next) => {
-		// 	console.log('apiFetch options:', options);
-		// 	return next(options);
+		// apiFetch({
+		// 	path: 'aws-ses/v1/settings',
+		// 	method: 'POST',
+		// 	data: formData
+		// }).then((response) => {
+		// 	console.log('==== ', response)
 		// });
+
+		apiFetch({ path: '/wp/v2/posts' })
+    .then((posts) => {
+        console.log(posts);
+    })
+    .catch((error) => {
+        console.error('Error fetching posts:', error);
+    });
 		
 	};
+
+	// const options = window.awsSesData.awsRegions;
+	// console.log('options: ', options);
 
 	return <>
 		<div className='mb-5'>
@@ -62,7 +66,7 @@ const SettingsPage = () => {
 			name='awsSesRegion'
 			label='Region'
 			onChange={handleFormData}
-			options={awsRegions}
+			// options={options}
 		/>
 		<button type='submit' className='bg-slate-800 text-slate-200 px-6 py-3 font-semibold text-md rounded-md' onClick={saveSettings}>
 			{ __('Save', 'wp-aws-ses-emailer') }
