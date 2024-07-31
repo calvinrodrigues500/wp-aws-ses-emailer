@@ -3,7 +3,9 @@
     "description": "AWS SES Integration for WordPress",
     "type": "wordpress-plugin",
     "autoload": {
-        "classmap": ["includes/"]
+        "psr-4": {
+            "Calvin\\WpAwsSesEmailer\\": ["includes/"]
+        }
     },
     "authors": [
         {

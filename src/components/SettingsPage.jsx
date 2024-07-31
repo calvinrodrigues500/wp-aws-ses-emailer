@@ -1,9 +1,11 @@
 import { __ } from '@wordpress/i18n';
-import { InputControl } from './';
+import { InputControl, SelectControl } from './';
 import { useState } from '@wordpress/element';
 import apiFetch from '@wordpress/api-fetch';
 
 const SettingsPage = () => {
+
+	const { awsRegions } = window?.wp_aws_ses_data;
 
 	const [formData, setFormData] = useState({
 		awsSesAccessKeyId: '',
@@ -23,21 +25,18 @@ const SettingsPage = () => {
 
 		console.log('====')
 
-		// apiFetch({
-		// 	path: 'aws-ses/v1/settings',
-		// 	method: 'POST',
-		// 	data: formData
-		// }).then((response) => {
-		// 	console.log('==== ', response)
-		// });
+		apiFetch({
+			path: '/wp-json/aws-ses/v1/settings',
+			method: 'POST',
+			data: formData
+		}).then((response) => {
+			console.log('==== ', response)
+		});
 
-		apiFetch({ path: '/wp/v2/posts' })
-    .then((posts) => {
-        console.log(posts);
-    })
-    .catch((error) => {
-        console.error('Error fetching posts:', error);
-    });
+		// apiFetch.use((options, next) => {
+		// 	console.log('apiFetch options:', options);
+		// 	return next(options);
+		// });
 		
 	};
 
@@ -58,11 +57,12 @@ const SettingsPage = () => {
 			label='Secret Access Key'
 			onChange={handleFormData}
 		/>
-		<InputControl
+		<SelectControl
 			id='aws-ses-region'
 			name='awsSesRegion'
 			label='Region'
 			onChange={handleFormData}
+			options={awsRegions}
 		/>
 		<button type='submit' className='bg-slate-800 text-slate-200 px-6 py-3 font-semibold text-md rounded-md' onClick={saveSettings}>
 			{ __('Save', 'wp-aws-ses-emailer') }
