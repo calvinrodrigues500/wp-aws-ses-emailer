@@ -1,6 +1,14 @@
+import { __ } from '@wordpress/i18n';
+
 const SelectControl = ({ id, name, label, options, onChange }) => {
 
 	return <div className='flex flex-col mb-4 mt-4 max-w-md'>
+		<label
+			htmlFor={id}
+			className='mb-2 text-sm font-medium text-gray-700'
+		>
+			{__( label, 'wp-aws-ses-emailer')}
+		</label>
 		<select
 			name={name}
 			id={id}

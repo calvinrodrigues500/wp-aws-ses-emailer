@@ -99,6 +99,16 @@ class Settings {
 				)
 			)
 		);
+
+		register_rest_route(
+			$this->namepsace,
+			$this->endpoint,
+			array(
+				array(
+					'methods' => WP_REST_Server::READABLE
+				)
+			)
+		);
 	}
 
 	/**
@@ -114,6 +124,7 @@ class Settings {
 	public function save_settings($request) {
 
 		$params = $request->get_params();
+		error_log('params '.print_r($params,1));
 		extract($params);
 
 		if (empty($awsSesAccessKeyId) || empty($awsSesSecretAccessKey)) {
@@ -130,6 +141,20 @@ class Settings {
 			'secret_access_key'	=> $awsSesSecretAccessKey,
 			'aws_region'		=> $awsSesRegion
 		));
+
+		wp_send_json_success();
+	}
+
+	/**
+	 * Get settings.
+	 */
+	public function get_settings() {
+		$settings = get_option($this->option_name, array());
+
+		wp_send_json_success(
+			$settings,
+			200
+		);
 	}
 
 	/**
